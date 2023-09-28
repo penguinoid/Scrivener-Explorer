@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ScrivenerExplorer.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="Start">
+
+            <Button
+                x:Name="ScrivPicker"
+                Text="Open .scriv file"
+                SemanticProperties.Hint="Select the Scrivener project file"
+                Clicked="OnScrivPickerClicked"
+                HorizontalOptions="Start"
+                Margin="10,10,0,0"/>
+
+            <Label Text="{Binding ProjectFile.Title}"
+                   FontSize="30"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start" 
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   Margin="10,5,0,10"/>
+
+            <ListView ItemsSource="{Binding ProjectFile.Folders}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Tapped="Folder_OnTapped">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Title}"
+                                       FontAttributes="Bold"
+                                       TextColor="White"
+                                       BackgroundColor="Black"
+                                       FontSize="20"
+                                       Padding="5,2,5,2"
+                                       Margin="10,1,0,1"/>
+                            </VerticalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

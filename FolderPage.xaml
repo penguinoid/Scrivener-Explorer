@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Scrivener.FolderPage"
+             Title="FolderPage">
+    <VerticalStackLayout>
+        <Label Text="{Binding Title}"
+               FontAttributes="Bold"
+               TextColor="White"
+               BackgroundColor="Black"
+               FontSize="20"
+               Padding="5,2,5,2"
+               Margin="10,1,0,1"/>
+        <ListView ItemsSource="{Binding Items}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Tapped="FolderItem_OnTapped">
+                        <Label Text="{Binding Title}"
+                               FontAttributes="None"
+                               TextColor="Black"
+                               BackgroundColor="White"
+                               FontSize="16"
+                               Padding="5,2,5,2"
+                               Margin="10,1,0,1" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>
