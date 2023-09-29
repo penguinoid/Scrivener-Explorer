@@ -5,7 +5,7 @@ using Android.Provider;
 using Android.Text;
 using Java.IO;
 
-namespace ScrivenerExplorer.Platforms.Android
+namespace ScrivenerExplorer
 {
     public static class FilesHelper
     {
@@ -251,7 +251,7 @@ namespace ScrivenerExplorer.Platforms.Android
         /// <param name="context">Current context</param>
         /// <param name="uri">Specified uri</param>
         /// <returns>Filename</returns>
-        private static string GetFileName(Context context, global::Android.Net.Uri uri)
+        public static string GetFileName(Context context, global::Android.Net.Uri uri)
         {
             string result = string.Empty;
 

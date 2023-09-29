@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ScrivenerExplorer.Interfaces;
 
 namespace ScrivenerExplorer
 {
@@ -15,8 +16,12 @@ namespace ScrivenerExplorer
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<IFileSelector, FileSelector>();
+            builder.Services.AddSingleton<IFileSelectResultHandler, FileSelectResultHandler>();
+
 #if DEBUG
-		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

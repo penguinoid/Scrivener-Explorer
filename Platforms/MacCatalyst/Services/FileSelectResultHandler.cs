@@ -7,12 +7,7 @@ namespace ScrivenerExplorer
     {
         public void SetHandler(EventHandler<FileSelectorResult> onFileSelectedDelegate)
         {
-            if (Platform.CurrentActivity is not MainActivity currentActivity)
-            {
-                throw new Exception($"Current activity is not of type {typeof(MainActivity).Name}");
-            }
-
-            currentActivity.OnFileSelected += onFileSelectedDelegate;
+            throw new FeatureNotSupportedException();
         }
     }
 }

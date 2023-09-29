@@ -1,14 +1,11 @@
-﻿using Android.App;
-using Android.Content;
-using Android.Net;
-using Android.OS;
+﻿using Android.Content;
 using Android.Provider;
 using ScrivenerExplorer.Interfaces;
 using Application = Android.App.Application;
 using Environment = Android.OS.Environment;
 using Uri = Android.Net.Uri;
 
-namespace ScrivenerExplorer.Platforms.Android.Services
+namespace ScrivenerExplorer
 {
     public class FileSelector : IFileSelector
     {

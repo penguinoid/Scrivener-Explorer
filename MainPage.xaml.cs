@@ -1,6 +1,8 @@
-﻿using Scrivener.Models;
+﻿using Scrivener;
+using Scrivener.Models;
 using Scrivener.ViewModels;
-using Scrivener;
+using ScrivenerExplorer.Interfaces;
+using ScrivenerExplorer.Models;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -8,28 +10,48 @@ namespace ScrivenerExplorer
 {
     public partial class MainPage : ContentPage
     {
+        private readonly IFileSelector _fileSelector;
+        private readonly IFileSelectResultHandler _fileSelectResultHandler;
+
         public ProjectViewModel ProjectViewModel { get; set; }
 
-        public MainPage()
+        public MainPage(IFileSelector fileSelector, IFileSelectResultHandler fileSelectResultHandler)
         {
+            _fileSelector = fileSelector;
+            _fileSelectResultHandler = fileSelectResultHandler;
+
             InitializeComponent();
+            InitFileSelectResultHandler();
+
             ProjectViewModel = new ProjectViewModel();
             BindingContext = ProjectViewModel;
         }
 
-        private async void OnScrivPickerClicked(object sender, EventArgs e)
+        private void InitFileSelectResultHandler()
         {
-            FileResult result = await FilePicker.PickAsync();
-            if (result != null)
+            _fileSelectResultHandler.SetHandler(async (sender, result) =>
+            {
+                if (!result.HasFile)
+                {
+                    return;
+                }
+
+                SetModel(result);
+            });
+        }
+
+        private void SetModel(FileSelectorResult result)
+        {
+            if (result.HasFile)
             {
                 if (result.FileName.EndsWith("scrivx", StringComparison.OrdinalIgnoreCase))
                 {
-                    await using var stream = await result.OpenReadAsync();
-                    var projectXml = XElement.Load(stream);
+                    //await using var stream = await result.OpenReadAsync();
+                    var projectXml = XElement.Load(result.FilePath);
 
                     var projectFile = new ProjectFile
                     {
-                        Title = result.FileName
+                        //Title = result.FileName
                     };
 
                     var foldersXml = projectXml.XPathSelectElements("Binder/BinderItem");
@@ -49,7 +71,7 @@ namespace ScrivenerExplorer
                                 Title = binderItemXml.Element("Title")?.Value,
                                 Label = binderItemXml.XPathSelectElement("MetaData/LabelID")?.Value,
                                 Filename = binderItemXml.Attribute("ID")?.Value,
-                                RootPath = result.FullPath.Replace(result.FileName, string.Empty)
+                                RootPath = result.FilePath.Replace(result.FileName, string.Empty)
                             };
                             folder.Items.Add(folderItem);
                         }
@@ -59,7 +81,11 @@ namespace ScrivenerExplorer
                     ProjectViewModel.ProjectFile = projectFile;
                 }
             }
+        }
 
+        private async void OnScrivPickerClicked(object sender, EventArgs e)
+        {
+            await _fileSelector.SelectAsync();
         }
 
         private void Folder_OnTapped(object sender, EventArgs e)
