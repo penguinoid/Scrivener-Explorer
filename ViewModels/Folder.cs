@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Scrivener.Models
+namespace ScrivenerExplorer.ViewModels
 {
     public class Folder : INotifyPropertyChanged
     {

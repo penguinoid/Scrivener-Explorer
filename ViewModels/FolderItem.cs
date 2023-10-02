@@ -1,4 +1,4 @@
-﻿namespace Scrivener.Models
+﻿namespace ScrivenerExplorer.ViewModels
 {
     public class FolderItem
     {

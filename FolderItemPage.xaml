@@ -2,44 +2,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Scrivener.FolderItemPage"
-             Title="FolderItemPage">
+             Title="Section">
     <VerticalStackLayout>
         <Label 
             Text="{Binding Title}"
-            FontSize="20"
+            FontSize="24"
             FontAttributes="Bold"
             VerticalOptions="Start" 
             HorizontalOptions="Start"
-            Margin="15,5,10,5" />
+            Margin="10,10,10,10" />
 
         <Label 
             Text="{Binding Synopsis}"
             VerticalOptions="Start" 
             HorizontalOptions="Start"
+            FontSize="20"
             Margin="15,5,10,5"
             IsVisible="{Binding IsSynopsisVisible}"/>
 
         <Button 
-            Text="Open section in editor"
+            Text="Open section externally"
             VerticalOptions="Start" 
-            HorizontalOptions="Start"
-            Margin="10,5,10,5"
+            HorizontalOptions="Fill"
+            TextColor="White"
+            BackgroundColor="Black"
+            FontAttributes="Bold"
+            FontSize="20"
+            Margin="10,10,10,10"
             Clicked="SectionButton_OnClicked"
             IsVisible="{Binding IsSectionVisible}"/>
 
         <Button 
-            Text="Open synopsis in editor"
+            Text="Open synopsis externally"
             VerticalOptions="Start" 
-            HorizontalOptions="Start"
-            Margin="10,5,10,5"
+            HorizontalOptions="Fill"
+            TextColor="White"
+            BackgroundColor="Black"
+            FontAttributes="Bold"
+            FontSize="20"
+            Margin="10,10,10,10"
             Clicked="SynopsisButton_OnClicked"
             IsVisible="{Binding IsSynopsisVisible}"/>
 
         <Button 
-            Text="Open notes in editor"
+            Text="Open notes externally"
             VerticalOptions="Start" 
-            HorizontalOptions="Start" 
-            Margin="10,5,10,5"
+            HorizontalOptions="Fill"
+            TextColor="White"
+            BackgroundColor="Black"
+            FontAttributes="Bold"
+            FontSize="20"
+            Margin="10,10,10,10"
             Clicked="NotesButton_OnClicked"
             IsVisible="{Binding IsNotesVisible}"/>
     </VerticalStackLayout>

@@ -3,6 +3,7 @@ using Scrivener.Models;
 using Scrivener.ViewModels;
 using ScrivenerExplorer.Interfaces;
 using ScrivenerExplorer.Models;
+using ScrivenerExplorer.ViewModels;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -51,7 +52,7 @@ namespace ScrivenerExplorer
 
                     var projectFile = new ProjectFile
                     {
-                        //Title = result.FileName
+                        Title = result.Title
                     };
 
                     var foldersXml = projectXml.XPathSelectElements("Binder/BinderItem");

@@ -1,4 +1,4 @@
-using Scrivener.Models;
+using ScrivenerExplorer.ViewModels;
 
 namespace Scrivener;
 
