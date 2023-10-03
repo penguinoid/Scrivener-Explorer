@@ -12,12 +12,7 @@
                 Text="Open .scriv file"
                 SemanticProperties.Hint="Select the Scrivener project file"
                 Clicked="OnScrivPickerClicked"
-                HorizontalOptions="Fill"
-                TextColor="White"
-                BackgroundColor="Black"
-                FontAttributes="Bold"
-                FontSize="20"
-                Margin="10,10,10,10"/>
+                HorizontalOptions="Fill"/>
 
             <Label Text="{Binding ProjectFile.Title}"
                    FontSize="30"
@@ -34,11 +29,9 @@
                             <VerticalStackLayout>
                                 <Label Text="{Binding Title}"
                                        FontAttributes="Bold"
-                                       TextColor="White"
-                                       BackgroundColor="Black"
                                        FontSize="20"
                                        Padding="5,2,5,2"
-                                       Margin="10,1,0,1"/>
+                                       Margin="10,5,0,10"/>
                             </VerticalStackLayout>
                         </ViewCell>
                     </DataTemplate>

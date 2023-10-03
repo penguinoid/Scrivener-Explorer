@@ -24,11 +24,6 @@
             Text="Open section externally"
             VerticalOptions="Start" 
             HorizontalOptions="Fill"
-            TextColor="White"
-            BackgroundColor="Black"
-            FontAttributes="Bold"
-            FontSize="20"
-            Margin="10,10,10,10"
             Clicked="SectionButton_OnClicked"
             IsVisible="{Binding IsSectionVisible}"/>
 
@@ -36,11 +31,6 @@
             Text="Open synopsis externally"
             VerticalOptions="Start" 
             HorizontalOptions="Fill"
-            TextColor="White"
-            BackgroundColor="Black"
-            FontAttributes="Bold"
-            FontSize="20"
-            Margin="10,10,10,10"
             Clicked="SynopsisButton_OnClicked"
             IsVisible="{Binding IsSynopsisVisible}"/>
 
@@ -48,11 +38,6 @@
             Text="Open notes externally"
             VerticalOptions="Start" 
             HorizontalOptions="Fill"
-            TextColor="White"
-            BackgroundColor="Black"
-            FontAttributes="Bold"
-            FontSize="20"
-            Margin="10,10,10,10"
             Clicked="NotesButton_OnClicked"
             IsVisible="{Binding IsNotesVisible}"/>
     </VerticalStackLayout>
