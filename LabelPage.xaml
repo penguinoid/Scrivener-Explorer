@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Scrivener.FolderPage"
-             Title="Sections">
-
+             x:Class="ScrivenerExplorer.LabelPage"
+             Title="LabelPage">
     <Grid>
-        <ListView ItemsSource="{Binding Items}">
+        <ListView ItemsSource="{Binding .}">
             <ListView.Header>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Title}"
+                    <Label Text="Labels"
                            FontAttributes="Bold"
                            FontSize="24"
                            Padding="5,2,5,2"
@@ -17,7 +16,7 @@
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell Tapped="FolderItem_OnTapped">
+                    <ViewCell>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -26,7 +25,7 @@
                                 <ColumnDefinition Width="20" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Rectangle Fill="{Binding LabelColor}"
+                            <Rectangle Fill="{Binding Color}"
                                        WidthRequest="20"
                                        HeightRequest="40"
                                        HorizontalOptions="Start" />
@@ -42,5 +41,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
-
 </ContentPage>

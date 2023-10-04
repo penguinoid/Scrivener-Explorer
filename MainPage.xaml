@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ScrivenerExplorer.ViewModels"
              x:Class="ScrivenerExplorer.MainPage">
 
     <ScrollView>
@@ -37,6 +38,13 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <Button
+                Text="View Labels"
+                SemanticProperties.Hint="View list of labels and their colors"
+                Clicked="LabelButton_OnClicked"
+                HorizontalOptions="Fill"
+                IsVisible="{Binding ProjectFile.IsInit}" />
 
         </VerticalStackLayout>
     </ScrollView>

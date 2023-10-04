@@ -25,7 +25,11 @@ namespace ScrivenerExplorer
             InitializeComponent();
             InitFileSelectResultHandler();
 
-            ProjectViewModel = new ProjectViewModel();
+            ProjectViewModel = new ProjectViewModel
+            {
+                ProjectFile = new ProjectFile()
+            };
+
             BindingContext = ProjectViewModel;
         }
 
@@ -45,6 +49,7 @@ namespace ScrivenerExplorer
         private void SetModel(FileSelectorResult result)
         {
             ProjectViewModel.ProjectFile = _projectViewModelFactory.CreateViewModel(result);
+            ProjectViewModel.ProjectFile.IsInit = true;
         }
 
         private async void OnScrivPickerClicked(object sender, EventArgs e)
@@ -57,6 +62,13 @@ namespace ScrivenerExplorer
             var viewCell = sender as ViewCell;
             var folder = viewCell.BindingContext as Folder;
             Navigation.PushAsync(new FolderPage(folder));
+        }
+
+        private void LabelButton_OnClicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var projectFile = button.BindingContext as ProjectViewModel;
+            Navigation.PushAsync(new LabelPage(projectFile.ProjectFile.Labels));
         }
     }
 }
