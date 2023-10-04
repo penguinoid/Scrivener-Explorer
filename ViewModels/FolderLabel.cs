@@ -1,9 +1,9 @@
 ﻿namespace ScrivenerExplorer.ViewModels
 {
-    public class Folder
+    public class FolderLabel
     {
         public string Id { get; set; }
         public string Title { get; set; }
-        public List<FolderItem> Items { get; set; }
+        public Color Color { get; set; }
     }
 }

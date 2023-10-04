@@ -4,7 +4,7 @@
     {
         public string Title { get; set; }
         public string Filename { get; set; }
-        public string Label { get; set; }
+        public Color LabelColor { get; set; }
         public string Synopsis { get; set; }
         public bool IsSectionVisible { get; set; }
         public bool IsSynopsisVisible { get; set; }

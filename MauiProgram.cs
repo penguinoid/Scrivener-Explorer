@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using ScrivenerExplorer.Interfaces;
+using ScrivenerExplorer.Services;
 
 namespace ScrivenerExplorer
 {
@@ -19,6 +20,7 @@ namespace ScrivenerExplorer
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<IFileSelector, FileSelector>();
             builder.Services.AddSingleton<IFileSelectResultHandler, FileSelectResultHandler>();
+            builder.Services.AddSingleton<IProjectViewModelFactory, ProjectViewModelFactory>();
 
 #if DEBUG
             builder.Logging.AddDebug();
