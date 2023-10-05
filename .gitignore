@@ -17,6 +17,7 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
+*.vsidx
 [Bb]in
 [Dd]ebug*/
 *.lib
@@ -29,3 +30,4 @@ packages/
 _source/.vs/
 _design/.sass-cache/
 _source/.vs/config/
+.vs/
