@@ -41,7 +41,7 @@ namespace ScrivenerExplorer.Services
                         Title = folderXml.Element("Title")?.Value,
                         Items = new List<FolderItem>()
                     };
-                    var binderItemsXml = folderXml.XPathSelectElements("Children/BinderItem");
+                    var binderItemsXml = folderXml.Descendants("BinderItem");
                     foreach (var binderItemXml in binderItemsXml)
                     {
                         var folderItem = new FolderItem
