@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Storage;
+using Microsoft.Extensions.Logging;
 using ScrivenerExplorer.Interfaces;
 using ScrivenerExplorer.Services;
 
@@ -11,6 +13,7 @@ namespace ScrivenerExplorer
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -21,6 +24,7 @@ namespace ScrivenerExplorer
             builder.Services.AddSingleton<IFileSelector, FileSelector>();
             builder.Services.AddSingleton<IFileSelectResultHandler, FileSelectResultHandler>();
             builder.Services.AddSingleton<IProjectViewModelFactory, ProjectViewModelFactory>();
+            builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
 
 #if DEBUG
             builder.Logging.AddDebug();

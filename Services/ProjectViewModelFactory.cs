@@ -1,23 +1,24 @@
-﻿using ScrivenerExplorer.Interfaces;
-using ScrivenerExplorer.Models;
+﻿using CommunityToolkit.Maui.Storage;
+using ScrivenerExplorer.Extensions;
+using ScrivenerExplorer.Interfaces;
 using ScrivenerExplorer.ViewModels;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using ScrivenerExplorer.Extensions;
 
 namespace ScrivenerExplorer.Services
 {
     public class ProjectViewModelFactory : IProjectViewModelFactory
     {
-        public ProjectFile CreateViewModel(FileSelectorResult result)
+        public ProjectFile CreateViewModel(FolderPickerResult result)
         {
-            if (result.FileName.EndsWith("scrivx", StringComparison.OrdinalIgnoreCase))
+            if (result.Folder.Name.EndsWith("scriv", StringComparison.OrdinalIgnoreCase))
             {
-                var projectXml = XElement.Load(result.FilePath);
+                var filePath = Path.Combine(result.Folder.Path, result.Folder.Name) + "x";
+                var projectXml = XElement.Load(filePath);
 
                 var projectFile = new ProjectFile
                 {
-                    Title = result.Title
+                    Title = result.Folder.Name.Replace(".scriv", string.Empty)
                 };
 
                 var labelsXml = projectXml.XPathSelectElements("LabelSettings/Labels/Label");
@@ -49,7 +50,7 @@ namespace ScrivenerExplorer.Services
                             Title = binderItemXml.Element("Title")?.Value,
                             LabelColor = GetColorFromLabel(binderItemXml.XPathSelectElement("MetaData/LabelID")?.Value, projectFile.Labels),
                             Filename = binderItemXml.Attribute("ID")?.Value,
-                            RootPath = result.FilePath.Replace(result.FileName, string.Empty)
+                            RootPath = result.Folder.Path
                         };
                         folder.Items.Add(folderItem);
                     }

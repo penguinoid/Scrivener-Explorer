@@ -15,6 +15,11 @@
                 Clicked="OnScrivPickerClicked"
                 HorizontalOptions="Fill"/>
 
+            <Button
+                    Text="Pick Folder using FolderPicker from DI Container"
+                    Clicked="OnFolderPickerClicked"
+                    HorizontalOptions="Center"/>
+
             <Label Text="{Binding ProjectFile.Title}"
                    FontSize="30"
                    HorizontalOptions="Start"

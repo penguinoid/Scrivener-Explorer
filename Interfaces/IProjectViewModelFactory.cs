@@ -1,10 +1,10 @@
-﻿using ScrivenerExplorer.Models;
+﻿using CommunityToolkit.Maui.Storage;
 using ScrivenerExplorer.ViewModels;
 
 namespace ScrivenerExplorer.Interfaces
 {
     public interface IProjectViewModelFactory
     {
-        ProjectFile CreateViewModel(FileSelectorResult result);
+        ProjectFile CreateViewModel(FolderPickerResult result);
     }
 }
