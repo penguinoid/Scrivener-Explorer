@@ -2,11 +2,14 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using PortableStorage;
 using Scrivener;
 using Scrivener.ViewModels;
 using ScrivenerExplorer.Interfaces;
 using ScrivenerExplorer.Models;
 using ScrivenerExplorer.ViewModels;
+using static Android.Media.Audiofx.DynamicsProcessing;
 
 namespace ScrivenerExplorer
 {
@@ -14,23 +17,32 @@ namespace ScrivenerExplorer
     {
         private readonly IFileSelector _fileSelector;
         private readonly IFileSelectResultHandler _fileSelectResultHandler;
+        private readonly IFolderSelector _folderSelector;
+        private readonly IFolderSelectResultHandler _folderSelectResultHandler;
         private readonly IProjectViewModelFactory _projectViewModelFactory;
+        private readonly IStorageRepository _storageRepository;
         private readonly IFolderPicker _folderPicker;
 
         public ProjectViewModel ProjectViewModel { get; set; }
 
         public MainPage(IFileSelector fileSelector, 
-            IFileSelectResultHandler fileSelectResultHandler, 
+            IFileSelectResultHandler fileSelectResultHandler,
+            IFolderSelector folderSelector,
+            IFolderSelectResultHandler folderSelectResultHandler,
             IProjectViewModelFactory projectViewModelFactory,
+            IStorageRepository storageRepository,
             IFolderPicker folderPicker)
         {
             _fileSelector = fileSelector;
             _fileSelectResultHandler = fileSelectResultHandler;
             _projectViewModelFactory = projectViewModelFactory;
+            _storageRepository = storageRepository;
+            _folderSelector = folderSelector;
+            _folderSelectResultHandler = folderSelectResultHandler;
             _folderPicker = folderPicker;
 
             InitializeComponent();
-            //InitFileSelectResultHandler();
+            InitFolderSelectResultHandler();
 
             ProjectViewModel = new ProjectViewModel
             {
@@ -40,18 +52,18 @@ namespace ScrivenerExplorer
             BindingContext = ProjectViewModel;
         }
 
-        //private void InitFileSelectResultHandler()
-        //{
-        //    _fileSelectResultHandler.SetHandler(async (sender, result) =>
-        //    {
-        //        if (!result.HasFile)
-        //        {
-        //            return;
-        //        }
+        private void InitFolderSelectResultHandler()
+        {
+            _folderSelectResultHandler.SetHandler(async (sender, result) =>
+            {
+                if (!result.HasData)
+                {
+                    return;
+                }
 
-        //        SetModel(result);
-        //    });
-        //}
+                SetModel(result);
+            });
+        }
 
         //public async Task PickFolder(CancellationToken cancellationToken)
         //{
@@ -66,14 +78,14 @@ namespace ScrivenerExplorer
         //    }
         //}
 
-        public async void OnFolderPickerClicked(object sender, EventArgs args)
-        {
-            var cancellationToken = new CancellationToken(false);
-            var result = await _folderPicker.PickAsync(cancellationToken);
-            result.EnsureSuccess();
-            SetModel(result);
-            //await Toast.Make($"Folder picked: Name - {result.Folder.Name}, Path - {result.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
-        }
+        //public async void OnFolderPickerClicked(object sender, EventArgs args)
+        //{
+        //    var cancellationToken = new CancellationToken(false);
+        //    var result = await _folderPicker.PickAsync(cancellationToken);
+        //    result.EnsureSuccess();
+        //    SetModel(result);
+        //    //await Toast.Make($"Folder picked: Name - {result.Folder.Name}, Path - {result.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
+        //}
 
         //[RelayCommand]
         //public async Task PickFolder(CancellationToken cancellationToken)
@@ -89,22 +101,23 @@ namespace ScrivenerExplorer
         //    }
         //}
 
-        private void SetModel(FolderPickerResult result)
+        private void SetModel(FolderSelectorResult result)
         {
+            PopulateStorageRepository(result.StorageRoot);
             ProjectViewModel.ProjectFile = _projectViewModelFactory.CreateViewModel(result);
             ProjectViewModel.ProjectFile.IsInit = true;
         }
 
         private async void OnScrivPickerClicked(object sender, EventArgs e)
         {
-            await _fileSelector.SelectAsync();
+            await _folderSelector.SelectAsync();
         }
 
         private void Folder_OnTapped(object sender, EventArgs e)
         {
             var viewCell = sender as ViewCell;
             var folder = viewCell.BindingContext as Folder;
-            Navigation.PushAsync(new FolderPage(folder));
+            Navigation.PushAsync(new FolderPage(folder, _storageRepository));
         }
 
         private void LabelButton_OnClicked(object sender, EventArgs e)
@@ -112,6 +125,34 @@ namespace ScrivenerExplorer
             var button = sender as Button;
             var projectFile = button.BindingContext as ProjectViewModel;
             Navigation.PushAsync(new LabelPage(projectFile.ProjectFile.Labels));
+        }
+
+        //private void SafStoragePickerClicked(object sender, EventArgs e)
+        //{
+        //    SafStorageHelper.BrowserFolder(Platform.CurrentActivity, 100);
+        //}
+
+        private void PopulateStorageRepository(StorageRoot storageRoot)
+        {
+            var folders = storageRoot.Entries;
+            foreach (var folder in folders)
+            {
+                if (folder.Name == "Files")
+                {
+                    var files = folder.OpenStorage();
+                    foreach (var file in files.Entries)
+                    {
+                        if (file.Name == "Docs")
+                        {
+                            var docs = file.OpenStorage();
+                            foreach (var doc in docs.Entries)
+                            {
+                                _storageRepository.AddStorageEntry(doc.Name, doc);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

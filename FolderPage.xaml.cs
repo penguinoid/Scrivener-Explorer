@@ -1,12 +1,16 @@
 using ScrivenerExplorer;
+using ScrivenerExplorer.Interfaces;
 using ScrivenerExplorer.ViewModels;
 
 namespace Scrivener;
 
 public partial class FolderPage : ContentPage
 {
-    public FolderPage(Folder folder)
+    private readonly IStorageRepository _storageRepository;
+
+    public FolderPage(Folder folder, IStorageRepository storageRepository)
     {
+        _storageRepository = storageRepository;
         InitializeComponent();
         BindingContext = folder;
     }
@@ -15,6 +19,6 @@ public partial class FolderPage : ContentPage
     {
         var viewCell = sender as ViewCell;
         var folderItem = viewCell.BindingContext as FolderItem;
-        Navigation.PushAsync(new FolderItemPage(folderItem));
+        Navigation.PushAsync(new FolderItemPage(folderItem, _storageRepository));
     }
 }

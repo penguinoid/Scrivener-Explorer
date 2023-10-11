@@ -3,42 +3,88 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Scrivener.FolderItemPage"
              Title="Section">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding Title}"
-            FontSize="24"
-            FontAttributes="Bold"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start"
-            Margin="10,10,10,10" />
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label 
+                Text="{Binding Title}"
+                FontSize="24"
+                FontAttributes="Bold"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start"
+                Margin="10,10,10,10" />
 
-        <Label 
-            Text="{Binding Synopsis}"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start"
-            FontSize="20"
-            Margin="15,5,10,5"
-            IsVisible="{Binding IsSynopsisVisible}"/>
+            <Label 
+                Text="Synopsis"
+                Style="{StaticResource ReverseColors}"
+                VerticalOptions="Start" 
+                HorizontalOptions="Fill"
+                FontSize="20"
+                Margin="0,5,10,5"
+                Padding="15,5,5,5"
+                IsVisible="{Binding IsSynopsisVisible}"/>
+            <Label 
+                Text="{Binding Synopsis}"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start"
+                FontSize="18"
+                Margin="15,5,10,5"
+                IsVisible="{Binding IsSynopsisVisible}"/>
 
-        <Button 
-            Text="Open section externally"
-            VerticalOptions="Start" 
-            HorizontalOptions="Fill"
-            Clicked="SectionButton_OnClicked"
-            IsVisible="{Binding IsSectionVisible}"/>
+            <Label 
+                Text="Notes"
+                Style="{StaticResource ReverseColors}"
+                VerticalOptions="Start" 
+                HorizontalOptions="Fill"
+                FontSize="20"
+                Margin="0,5,10,5"
+                Padding="15,5,5,5"
+                IsVisible="{Binding IsNotesVisible}"/>
+            <Label 
+                Text="{Binding Notes}"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start"
+                FontSize="18"
+                Margin="15,5,10,5"
+                IsVisible="{Binding IsNotesVisible}"/>
 
-        <Button 
-            Text="Open synopsis externally"
-            VerticalOptions="Start" 
-            HorizontalOptions="Fill"
-            Clicked="SynopsisButton_OnClicked"
-            IsVisible="{Binding IsSynopsisVisible}"/>
+            <Label 
+                Text="Text"
+                Style="{StaticResource ReverseColors}"
+                VerticalOptions="Start" 
+                HorizontalOptions="Fill"
+                FontSize="20"
+                Margin="0,5,10,5"
+                Padding="15,5,5,5"
+                IsVisible="{Binding IsSynopsisVisible}"/>
+            <Label 
+                Text="{Binding Section}"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start"
+                FontSize="18"
+                Margin="15,5,10,5"
+                IsVisible="{Binding IsSectionVisible}"/>
 
-        <Button 
-            Text="Open notes externally"
-            VerticalOptions="Start" 
-            HorizontalOptions="Fill"
-            Clicked="NotesButton_OnClicked"
-            IsVisible="{Binding IsNotesVisible}"/>
-    </VerticalStackLayout>
+
+            <Button 
+                Text="Open section externally"
+                VerticalOptions="Start" 
+                HorizontalOptions="Fill"
+                Clicked="SectionButton_OnClicked"
+                IsVisible="{Binding IsSectionVisible}"/>
+
+            <Button 
+                Text="Open synopsis externally"
+                VerticalOptions="Start" 
+                HorizontalOptions="Fill"
+                Clicked="SynopsisButton_OnClicked"
+                IsVisible="{Binding IsSynopsisVisible}"/>
+
+            <Button 
+                Text="Open notes externally"
+                VerticalOptions="Start" 
+                HorizontalOptions="Fill"
+                Clicked="NotesButton_OnClicked"
+                IsVisible="{Binding IsNotesVisible}"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

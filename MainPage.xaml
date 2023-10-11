@@ -15,10 +15,15 @@
                 Clicked="OnScrivPickerClicked"
                 HorizontalOptions="Fill"/>
 
-            <Button
+            <!--<Button
                     Text="Pick Folder using FolderPicker from DI Container"
                     Clicked="OnFolderPickerClicked"
                     HorizontalOptions="Center"/>
+
+            <Button
+                Text="Saf Storage Picker"
+                Clicked="SafStoragePickerClicked"
+                HorizontalOptions="Center"/>-->
 
             <Label Text="{Binding ProjectFile.Title}"
                    FontSize="30"

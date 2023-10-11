@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using PortableStorage.Droid;
 using ScrivenerExplorer.Models;
 
 namespace ScrivenerExplorer
@@ -10,9 +11,11 @@ namespace ScrivenerExplorer
     public class MainActivity : MauiAppCompatActivity
     {
         public event EventHandler<FileSelectorResult> OnFileSelected;
+        public event EventHandler<FolderSelectorResult> OnFolderSelected;
 
-        public const int ReadFileResultCode = 1;
-        public const int RequestInstallPackage = 2;
+        public const int ReadFolderResultCode = 1;
+        public const int ReadFileResultCode = 2;
+        public const int RequestInstallPackage = 3;
 
         protected override void OnCreate(Bundle? savedInstanceState)
         {
@@ -27,6 +30,21 @@ namespace ScrivenerExplorer
 
             switch (requestCode)
             {
+                case ReadFolderResultCode:
+                    if (data?.Data is not null)
+                    {
+                        var storageUri = SafStorageHelper.ResolveFromActivityResult(this, data);
+
+                        var result = new FolderSelectorResult()
+                        {
+                            StorageRoot = SafStorgeProvider.CreateStorage(this, storageUri),
+                            HasData = true
+                        };
+
+                        OnFolderSelected?.Invoke(this, result);
+                    }
+                    break;
+
                 case ReadFileResultCode:
                     if (data?.Data is not null)
                     {
