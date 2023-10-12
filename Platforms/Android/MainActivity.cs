@@ -10,12 +10,9 @@ namespace ScrivenerExplorer
     [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
     public class MainActivity : MauiAppCompatActivity
     {
-        public event EventHandler<FileSelectorResult> OnFileSelected;
         public event EventHandler<FolderSelectorResult> OnFolderSelected;
 
         public const int ReadFolderResultCode = 1;
-        public const int ReadFileResultCode = 2;
-        public const int RequestInstallPackage = 3;
 
         protected override void OnCreate(Bundle? savedInstanceState)
         {
@@ -42,20 +39,6 @@ namespace ScrivenerExplorer
                         };
 
                         OnFolderSelected?.Invoke(this, result);
-                    }
-                    break;
-
-                case ReadFileResultCode:
-                    if (data?.Data is not null)
-                    {
-                        var result = new FileSelectorResult
-                        {
-                            HasFile = true,
-                            FilePath = FilesHelper.GetActualPathForFile(data.Data, this),
-                            FileName = FilesHelper.GetFileName(this, data.Data)
-                        };
-
-                        OnFileSelected?.Invoke(this, result);
                     }
                     break;
             }

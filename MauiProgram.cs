@@ -23,12 +23,9 @@ namespace ScrivenerExplorer
                 });
 
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<IFileSelector, FileSelector>();
-            builder.Services.AddSingleton<IFileSelectResultHandler, FileSelectResultHandler>();
             builder.Services.AddSingleton<IFolderSelector, FolderSelector>();
             builder.Services.AddSingleton<IFolderSelectResultHandler, FolderSelectResultHandler>();
             builder.Services.AddSingleton<IProjectViewModelFactory, ProjectViewModelFactory>();
-            builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
             builder.Services.AddSingleton<IStorageRepository, StorageRepository>();
 
 #if DEBUG

@@ -15,7 +15,7 @@
 
             <Label 
                 Text="Synopsis"
-                Style="{StaticResource ReverseColors}"
+                Style="{StaticResource ReverseTextAndBackgroundColours}"
                 VerticalOptions="Start" 
                 HorizontalOptions="Fill"
                 FontSize="20"
@@ -32,7 +32,7 @@
 
             <Label 
                 Text="Notes"
-                Style="{StaticResource ReverseColors}"
+                Style="{StaticResource ReverseTextAndBackgroundColours}"
                 VerticalOptions="Start" 
                 HorizontalOptions="Fill"
                 FontSize="20"
@@ -49,13 +49,13 @@
 
             <Label 
                 Text="Text"
-                Style="{StaticResource ReverseColors}"
+                Style="{StaticResource ReverseTextAndBackgroundColours}"
                 VerticalOptions="Start" 
                 HorizontalOptions="Fill"
                 FontSize="20"
                 Margin="0,5,10,5"
                 Padding="15,5,5,5"
-                IsVisible="{Binding IsSynopsisVisible}"/>
+                IsVisible="{Binding IsSectionVisible}"/>
             <Label 
                 Text="{Binding Section}"
                 VerticalOptions="Start" 
@@ -64,27 +64,6 @@
                 Margin="15,5,10,5"
                 IsVisible="{Binding IsSectionVisible}"/>
 
-
-            <Button 
-                Text="Open section externally"
-                VerticalOptions="Start" 
-                HorizontalOptions="Fill"
-                Clicked="SectionButton_OnClicked"
-                IsVisible="{Binding IsSectionVisible}"/>
-
-            <Button 
-                Text="Open synopsis externally"
-                VerticalOptions="Start" 
-                HorizontalOptions="Fill"
-                Clicked="SynopsisButton_OnClicked"
-                IsVisible="{Binding IsSynopsisVisible}"/>
-
-            <Button 
-                Text="Open notes externally"
-                VerticalOptions="Start" 
-                HorizontalOptions="Fill"
-                Clicked="NotesButton_OnClicked"
-                IsVisible="{Binding IsNotesVisible}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

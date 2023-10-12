@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Maui.Storage;
-using ScrivenerExplorer.Extensions;
+﻿using ScrivenerExplorer.Extensions;
 using ScrivenerExplorer.Interfaces;
 using ScrivenerExplorer.Models;
 using ScrivenerExplorer.ViewModels;
@@ -23,7 +22,7 @@ namespace ScrivenerExplorer.Services
 
             var projectFile = new ProjectFile
             {
-                //Title = result.Folder.Name.Replace(".scriv", string.Empty)
+                Title = projectEntry.Name.Replace(".scriv", string.Empty)
             };
 
             var labelsXml = projectXml.XPathSelectElements("LabelSettings/Labels/Label");
@@ -54,8 +53,7 @@ namespace ScrivenerExplorer.Services
                     {
                         Title = binderItemXml.Element("Title")?.Value,
                         LabelColor = GetColorFromLabel(binderItemXml.XPathSelectElement("MetaData/LabelID")?.Value, projectFile.Labels),
-                        Filename = binderItemXml.Attribute("ID")?.Value,
-                        //RootPath = result.Folder.Path
+                        Filename = binderItemXml.Attribute("ID")?.Value
                     };
                     folder.Items.Add(folderItem);
                 }

@@ -14,11 +14,5 @@
         public string SectionFileName => $"{Filename}.rtf";
         public string SynopsisFileName => $"{Filename}_synopsis.txt";
         public string NotesFileName => $"{Filename}_notes.rtf";
-        public string RootPath { get; set; }
-
-        private string GetFilePath(string path, string fileName)
-        {
-            return Path.Combine(Path.GetFullPath(path), "Files", "Docs", fileName);
-        }
     }
 }

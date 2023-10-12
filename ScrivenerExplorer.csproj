@@ -54,6 +54,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Interfaces\IFileSelector.cs" />
+	  <Compile Remove="Interfaces\IFileSelectResultHandler.cs" />
+	  <Compile Remove="Platforms\Android\FilesHelper.cs" />
+	  <Compile Remove="Platforms\Android\Services\FileSelector.cs" />
+	  <Compile Remove="Platforms\Android\Services\FileSelectResultHandler.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Dangl.TextConverter" Version="3.0.2" />
