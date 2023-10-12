@@ -21,6 +21,18 @@ namespace ScrivenerExplorer.ViewModels
             }
         }
 
+        private bool _isError;
+        public bool IsError
+        {
+            get => _isError;
+            set
+            {
+                if (value == _isError) return;
+                _isError = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ProjectFile()
         {
             Folders = new List<Folder>();

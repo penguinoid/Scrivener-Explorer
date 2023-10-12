@@ -10,10 +10,19 @@
 
             <Button
                 x:Name="ScrivPicker"
-                Text="Open .scriv file"
-                SemanticProperties.Hint="Select the Scrivener project file"
+                Text="Open .scriv folder"
+                SemanticProperties.Hint="Select the Scrivener project folder"
                 Clicked="OnScrivPickerClicked"
                 HorizontalOptions="Fill"/>
+
+            <Label Text="Could not find .scrivx file in the selected folder. Please try a different folder."
+                   Style="{StaticResource ReverseTextColor}"
+                   FontSize="30"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start" 
+                   FontAttributes="Bold"
+                   Margin="10,5,0,10"
+                   IsVisible="{Binding ProjectFile.IsError}"/>
 
             <Label Text="{Binding ProjectFile.Title}"
                    Style="{StaticResource ReverseTextColor}"

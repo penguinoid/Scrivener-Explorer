@@ -54,8 +54,17 @@ namespace ScrivenerExplorer
         private void SetModel(FolderSelectorResult result)
         {
             PopulateStorageRepository(result.StorageRoot);
-            ProjectViewModel.ProjectFile = _projectViewModelFactory.CreateViewModel(result);
-            ProjectViewModel.ProjectFile.IsInit = true;
+            var projectFile = _projectViewModelFactory.CreateViewModel(result);
+            if (projectFile != null)
+            {
+                ProjectViewModel.ProjectFile = projectFile;
+                ProjectViewModel.ProjectFile.IsInit = true;
+            }
+            else
+            {
+                ProjectViewModel.ProjectFile.IsError = true;
+            }
+            
         }
 
         private async void OnScrivPickerClicked(object sender, EventArgs e)
