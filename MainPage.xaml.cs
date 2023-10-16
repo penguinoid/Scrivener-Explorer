@@ -88,6 +88,8 @@ namespace ScrivenerExplorer
 
         private void PopulateStorageRepository(StorageRoot storageRoot)
         {
+            _storageRepository.Initialize();
+
             var folders = storageRoot.Entries;
             foreach (var folder in folders)
             {

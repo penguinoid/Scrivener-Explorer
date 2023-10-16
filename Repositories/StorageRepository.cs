@@ -9,7 +9,12 @@ namespace ScrivenerExplorer.Repositories
 
         public StorageRepository()
         {
-            _storageEntries = new Dictionary<string, StorageEntry>();
+            Init();
+        }
+
+        public void Initialize()
+        {
+            Init();
         }
 
         public StorageEntry GetStorageEntry(string key)
@@ -35,6 +40,11 @@ namespace ScrivenerExplorer.Repositories
             }
 
             _storageEntries.Add(key, entry);
+        }
+
+        private void Init()
+        {
+            _storageEntries = new Dictionary<string, StorageEntry>();
         }
     }
 }
