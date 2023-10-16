@@ -22,7 +22,7 @@ namespace ScrivenerExplorer.Services
 
             var projectFile = new ProjectFile
             {
-                Title = projectEntry.Name.Replace(".scriv", string.Empty)
+                Title = projectEntry.Name.Replace(".scrivx", string.Empty)
             };
 
             var labelsXml = projectXml.XPathSelectElements("LabelSettings/Labels/Label");
