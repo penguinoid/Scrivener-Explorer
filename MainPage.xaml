@@ -11,7 +11,7 @@
             <Button
                 x:Name="ScrivPicker"
                 Text="Open .scriv folder"
-                SemanticProperties.Hint="Select the Scrivener project folder"
+                SemanticProperties.Hint="Select the .scriv project folder"
                 Clicked="OnScrivPickerClicked"
                 HorizontalOptions="Fill"/>
 

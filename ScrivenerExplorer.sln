@@ -3,20 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrivenerExplorer", "ScrivenerExplorer.csproj", "{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrivenerExplorer", "ScrivenerExplorer.csproj", "{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM64 = Debug|ARM64
 		Release|Any CPU = Release|Any CPU
+		Release|ARM64 = Release|ARM64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Debug|ARM64.Build.0 = Debug|ARM64
+		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Debug|ARM64.Deploy.0 = Debug|ARM64
 		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Release|ARM64.ActiveCfg = Release|ARM64
+		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Release|ARM64.Build.0 = Release|ARM64
+		{3BDE422A-C116-4AD2-BEDB-1A2ABEAD2414}.Release|ARM64.Deploy.0 = Release|ARM64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
