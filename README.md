@@ -1,4 +1,4 @@
-# Scrivener Explorer
+# Scriv Project Explorer
 This is a file explorer for Scrivener that reads its project file and provides navigation to its text files.
 ## Background
 Since an Android version of Scrivener is never likely to be a thing, I wrote this for myself to be able to at least access my projects while out and about. It's useful to be able to read my notes even if it doesn't allow direct editing.
